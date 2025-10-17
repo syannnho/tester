@@ -1,6 +1,4 @@
-Saya akan membantu Anda menghapus sistem autentikasi dari script ini. Berikut adalah script yang sudah dimodifikasi:
 
-```lua
 -------------------------------------------------------------
 -- LOAD LIBRARY UI
 -------------------------------------------------------------
