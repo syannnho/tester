@@ -84,6 +84,8 @@ ScriptSection:Button({
     Title = "[UPD] YAHAYUK",
     Desc = "Load script YAHAYUK",
     Callback = function()
+        Window:Close()
+        
         WindUI:Notify({
             Title = "Executing",
             Content = "Please Wait..",
@@ -91,12 +93,7 @@ ScriptSection:Button({
             Icon = "loader"
         })
         
-        -- Auto close loader setelah 1 detik
-        task.wait(1)
-        Window:Close()
-        
-        -- Load script
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/syannnho/tester/refs/heads/main/Muan.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/yrejinhoo/AstrionHUB/refs/heads/main/AstrionHUB.lua"))()
     end
 })
 
@@ -118,16 +115,14 @@ PrivateSection:Button({
     Title = "🛠 CREATE PRIVATE SERVER",
     Desc = "Jalankan script bypass private server",
     Callback = function()
+        Window:Close()
+        
         WindUI:Notify({
             Title = "Bypass Private Server",
             Content = "Menjalankan script bypass...",
             Duration = 3,
             Icon = "shield"
         })
-        
-        -- Auto close loader
-        task.wait(1)
-        Window:Close()
         
         loadstring(game:HttpGet("https://raw.githubusercontent.com/RullzsyHUB/roblox-scripts/main/RullzsyHUB%20-%20PRIVATE%20SERVER/main.lua"))()
     end
@@ -183,8 +178,6 @@ JoinSection:Button({
                 Icon = "check-circle"
             })
             
-            -- Auto close loader
-            task.wait(2)
             Window:Close()
         else
             WindUI:Notify({
