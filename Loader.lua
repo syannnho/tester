@@ -7,7 +7,7 @@ local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/rel
 -- THEME SETUP
 -- ===========================================================
 WindUI:AddTheme({
-    Name = "RullzsyHUB", 
+    Name = "AstrionHUB", 
     Accent = Color3.fromHex("#18181b"),
     Dialog = Color3.fromHex("#161616"),
     Outline = Color3.fromHex("#FFFFFF"),
@@ -22,20 +22,20 @@ WindUI:AddTheme({
 -- WINDOW SETUP
 -- ===========================================================
 local Window = WindUI:CreateWindow({
-    Title = "RullzsyHUB | Script Loader",
+    Title = "AstrionHUB",
     Icon = "loader",
-    Author = "RullzsyHUB",
+    Author = "Jinho",
     Folder = "RullzsyHUB",
     Size = UDim2.fromOffset(600, 500),
     MinSize = Vector2.new(560, 350),
-    Theme = "RullzsyHUB",
+    Theme = "AstrionHUB",
     Resizable = true,
     SideBarWidth = 180,
     HideSearchBar = false,
 })
 
 Window:Tag({
-    Title = "Created By RullzsyHUB",
+    Title = "BETA",
     Color = Color3.fromHex("#FF6B6B"),
     Radius = 4,
 })
@@ -80,9 +80,8 @@ local ScriptTab = Window:Tab({
     Icon = "play",
     Locked = false,
 })
-
 local ScriptSection = ScriptTab:Section({
-    Title = "🟢 TOTAL MAP: 14",
+    Title = "TOTAL MAP: 1",
     Opened = true,
 })
 
@@ -92,213 +91,21 @@ local ScriptSection = ScriptTab:Section({
 
 -- 1. KOTA BUKAN GUNUNG
 ScriptSection:Button({
-    Title = "🟢 KOTA BUKAN GUNUNG",
-    Desc = "Load script KOTA BUKAN GUNUNG",
+    Title = "[UPD] YAHAYUK",
+    Desc = "Load script YAHAYUK",
     Callback = function()
         WindUI:Notify({
             Title = "Executing",
-            Content = "Loading KOTA BUKAN GUNUNG...",
+            Content = "Please Wait..",
             Duration = 4,
             Icon = "loader"
         })
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/RullzsyHUB/roblox-scripts/refs/heads/main/RullzsyHUB%20-%20KOTA%20BUKAN%20GUNUNG/main.lua"))()
+        loadstring(game:HttpGet(""))()
     end
 })
 
--- 2. MOUNT ATIN
-ScriptSection:Button({
-    Title = "🟢 MOUNT ATIN",
-    Desc = "Load script MOUNT ATIN",
-    Callback = function()
-        WindUI:Notify({
-            Title = "Executing",
-            Content = "Loading MOUNT ATIN...",
-            Duration = 4,
-            Icon = "loader"
-        })
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/RullzsyHUB/roblox-scripts/main/RullzsyHUB%20-%20MOUNT%20ATIN/main.lua"))()
-    end
-})
+            
 
--- 3. MOUNT ARUNIKA
-ScriptSection:Button({
-    Title = "🟢 MOUNT ARUNIKA",
-    Desc = "Load script MOUNT ARUNIKA",
-    Callback = function()
-        WindUI:Notify({
-            Title = "Executing",
-            Content = "Loading MOUNT ARUNIKA...",
-            Duration = 4,
-            Icon = "loader"
-        })
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/RullzsyHUB/roblox-scripts/main/RullzsyHUB%20-%20MOUNT%20ARUNIKA/main.lua"))()
-    end
-})
-
--- 4. MOUNT HMMM
-ScriptSection:Button({
-    Title = "🟢 MOUNT HMMM",
-    Desc = "Load script MOUNT HMMM",
-    Callback = function()
-        WindUI:Notify({
-            Title = "Executing",
-            Content = "Loading MOUNT HMMM...",
-            Duration = 4,
-            Icon = "loader"
-        })
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/RullzsyHUB/roblox-scripts/main/RullzsyHUB%20-%20MOUNT%20HMMM/main.lua"))()
-    end
-})
-
--- 5. MOUNT PARGOY
-ScriptSection:Button({
-    Title = "🟢 MOUNT PARGOY",
-    Desc = "Load script MOUNT PARGOY",
-    Callback = function()
-        WindUI:Notify({
-            Title = "Executing",
-            Content = "Loading MOUNT PARGOY...",
-            Duration = 4,
-            Icon = "loader"
-        })
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/RullzsyHUB/roblox-scripts/main/RullzsyHUB%20-%20MOUNT%20PARGOY/main.lua"))()
-    end
-})
-
--- 6. MOUNT PENGANGGURAN
-ScriptSection:Button({
-    Title = "🟢 MOUNT PENGANGGURAN",
-    Desc = "Load script MOUNT PENGANGGURAN",
-    Callback = function()
-        WindUI:Notify({
-            Title = "Executing",
-            Content = "Loading MOUNT PENGANGGURAN...",
-            Duration = 4,
-            Icon = "loader"
-        })
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/RullzsyHUB/roblox-scripts/main/RullzsyHUB%20-%20MOUNT%20PENGANGGURAN/main.lua"))()
-    end
-})
-
--- 7. MOUNT STECU
-ScriptSection:Button({
-    Title = "🟢 MOUNT STECU",
-    Desc = "Load script MOUNT STECU",
-    Callback = function()
-        WindUI:Notify({
-            Title = "Executing",
-            Content = "Loading MOUNT STECU...",
-            Duration = 4,
-            Icon = "loader"
-        })
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/RullzsyHUB/roblox-scripts/main/RullzsyHUB%20-%20MOUNT%20STECU/main.lua"))()
-    end
-})
-
--- 8. MOUNT YACAPE
-ScriptSection:Button({
-    Title = "🟢 MOUNT YACAPE",
-    Desc = "Load script MOUNT YACAPE",
-    Callback = function()
-        WindUI:Notify({
-            Title = "Executing",
-            Content = "Loading MOUNT YACAPE...",
-            Duration = 4,
-            Icon = "loader"
-        })
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/RullzsyHUB/roblox-scripts/main/RullzsyHUB%20-%20MOUNT%20YACAPE/main.lua"))()
-    end
-})
-
--- 9. MOUNT YUKARI
-ScriptSection:Button({
-    Title = "🟢 MOUNT YUKARI",
-    Desc = "Load script MOUNT YUKARI",
-    Callback = function()
-        WindUI:Notify({
-            Title = "Executing",
-            Content = "Loading MOUNT YUKARI...",
-            Duration = 4,
-            Icon = "loader"
-        })
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/RullzsyHUB/roblox-scripts/main/RullzsyHUB%20-%20MOUNT%20YUKARI/main.lua"))()
-    end
-})
-
--- 10. NIGHTMARE EXPEDITION
-ScriptSection:Button({
-    Title = "🟢 NIGHTMARE EXPEDITION",
-    Desc = "Load script NIGHTMARE EXPEDITION",
-    Callback = function()
-        WindUI:Notify({
-            Title = "Executing",
-            Content = "Loading NIGHTMARE EXPEDITION...",
-            Duration = 4,
-            Icon = "loader"
-        })
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/RullzsyHUB/roblox-scripts/main/RullzsyHUB%20-%20MOUNT%20NIGHTMARE%20EXPEDITION/main.lua"))()
-    end
-})
-
--- 11. MOUNT YAHAYUK
-ScriptSection:Button({
-    Title = "🟢 MOUNT YAHAYUK (NEW)",
-    Desc = "Load script MOUNT YAHAYUK",
-    Callback = function()
-        WindUI:Notify({
-            Title = "Executing",
-            Content = "Loading MOUNT YAHAYUK...",
-            Duration = 4,
-            Icon = "loader"
-        })
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/RullzsyHUB/roblox-scripts/main/RullzsyHUB%20-%20MOUNT%20YAHAYUK%20V1/main.lua"))()
-    end
-})
-
--- 12. MOUNT YNTKTS
-ScriptSection:Button({
-    Title = "🟢 MOUNT YNTKTS",
-    Desc = "Load script MOUNT YNTKTS",
-    Callback = function()
-        WindUI:Notify({
-            Title = "Executing",
-            Content = "Loading MOUNT YNTKTS...",
-            Duration = 4,
-            Icon = "loader"
-        })
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/RullzsyHUB/roblox-scripts/main/RullzsyHUB%20-%20MOUNT%20YNTKTS/main.lua"))()
-    end
-})
-
--- 13. MOUNT DAUN
-ScriptSection:Button({
-    Title = "🟢 MOUNT DAUN",
-    Desc = "Load script MOUNT DAUN",
-    Callback = function()
-        WindUI:Notify({
-            Title = "Executing",
-            Content = "Loading MOUNT DAUN...",
-            Duration = 4,
-            Icon = "loader"
-        })
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/RullzsyHUB/roblox-scripts/main/RullzsyHUB%20-%20MOUNT%20DAUN/main.lua"))()
-    end
-})
-
--- 14. MOUNT KAWAH EXPEDITION
-ScriptSection:Button({
-    Title = "🟢 MOUNT KAWAH EXPEDITION",
-    Desc = "Load script MOUNT KAWAH EXPEDITION",
-    Callback = function()
-        WindUI:Notify({
-            Title = "Executing",
-            Content = "Loading MOUNT KAWAH EXPEDITION...",
-            Duration = 4,
-            Icon = "loader"
-        })
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/RullzsyHUB/roblox-scripts/main/RullzsyHUB%20-%20MOUNT%20KAWAH%20EXPEDITION/main.lua"))()
-    end
-})
 
 -- ===========================================================
 -- TAB MENU : PRIVATE SERVER
