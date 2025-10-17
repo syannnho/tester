@@ -90,12 +90,15 @@ ScriptSection:Button({
             Duration = 4,
             Icon = "loader"
         })
+        
+        -- Auto close loader setelah 1 detik
+        task.wait(1)
+        Window:Close()
+        
+        -- Load script
         loadstring(game:HttpGet("https://raw.githubusercontent.com/syannnho/tester/refs/heads/main/Muan.lua"))()
     end
 })
-
-            
-
 
 -- ===========================================================
 -- TAB MENU : PRIVATE SERVER
@@ -121,6 +124,11 @@ PrivateSection:Button({
             Duration = 3,
             Icon = "shield"
         })
+        
+        -- Auto close loader
+        task.wait(1)
+        Window:Close()
+        
         loadstring(game:HttpGet("https://raw.githubusercontent.com/RullzsyHUB/roblox-scripts/main/RullzsyHUB%20-%20PRIVATE%20SERVER/main.lua"))()
     end
 })
@@ -174,6 +182,10 @@ JoinSection:Button({
                 Duration = 3,
                 Icon = "check-circle"
             })
+            
+            -- Auto close loader
+            task.wait(2)
+            Window:Close()
         else
             WindUI:Notify({
                 Title = "❌ Gagal Join",
