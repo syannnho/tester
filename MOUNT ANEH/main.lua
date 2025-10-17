@@ -71,8 +71,8 @@ local setclipboard = setclipboard or toclipboard
 -- AUTO WALK
 -------------------------------------------------------------
 -----| AUTO WALK VARIABLES |-----
-local mainFolder = "RullzsyHUB"
-local jsonFolder = mainFolder .. "/js_mount_yahayuk_v1"
+local mainFolder = "AstrionRE"
+local jsonFolder = mainFolder .. "/js_mount_aneh"
 if not isfolder(mainFolder) then
     makefolder(mainFolder)
 end
@@ -83,15 +83,14 @@ end
 -- Server URL and JSON checkpoint file list
 local baseURL = "https://raw.githubusercontent.com/syannnho/Replays/refs/heads/main/yahayuk"
 local jsonFiles = {
-    "spawnpoint_jalur_1.json",
-    "spawnpoint_jalur_2.json",
-	"spawnpoint_jalur_3.json",
-	"checkpoint_1.json",
-    "checkpoint_2.json",
-    "checkpoint_3.json",
-    "checkpoint_4_jalur_1.json",
-    "checkpoint_4_jalur_2.json",
-	"checkpoint_5.json",
+    "ANEH_CP_1.json",
+    "ANEH_CP_2.json",
+	"ANEH_CP_3.json",
+	"ANEH_CP_4.json",
+    "ANEH_CP_5.json",
+    "ANEH_CP_6.json",
+    "ANEH_CP_7.json",
+	"ANEH_SUMMIT.json",
 }
 
 local isPlaying = false
@@ -1152,12 +1151,12 @@ AutoWalkTab:Section({
 
 -- Spawnpoint Toggle
 local SCPToggle = AutoWalkTab:Toggle({
-    Title = "Auto Walk (Spawnpoint Route 1)",
-    Desc = "Walk from spawnpoint Route 1",
+    Title = "Auto Walk (Spawnpoint)",
+    Desc = "Walk from spawnpoint",
     Default = false,
     Callback = function(Value)
         if Value then
-            playSingleCheckpointFile("spawnpoint_jalur_1", 1)
+            playSingleCheckpointFile("ANEH_CP_1.json", 1)
         else
             autoLoopEnabled = false
             isManualMode = false
@@ -1167,12 +1166,12 @@ local SCPToggle = AutoWalkTab:Toggle({
 })
 
 local SCPToggle = AutoWalkTab:Toggle({
-    Title = "Auto Walk (Spawnpoint Route 2)",
-    Desc = "Walk from spawnpoint Route 2",
+    Title = "Auto Walk (Spawnpoint 2)",
+    Desc = "Walk from spawnpoint 2",
     Default = false,
     Callback = function(Value)
         if Value then
-            playSingleCheckpointFile("spawnpoint_jalur_2", 2)
+            playSingleCheckpointFile("ANEH_CP_2.json", 2)
         else
             autoLoopEnabled = false
             isManualMode = false
@@ -1182,12 +1181,12 @@ local SCPToggle = AutoWalkTab:Toggle({
 })
 
 local SCPToggle = AutoWalkTab:Toggle({
-    Title = "Auto Walk (Spawnpoint Route 3)",
-    Desc = "Walk from spawnpoint Route 3",
+    Title = "Auto Walk (Spawnpoint 3)",
+    Desc = "Walk from spawnpoint 3",
     Default = false,
     Callback = function(Value)
         if Value then
-            playSingleCheckpointFile("spawnpoint_jalur_3", 3)
+            playSingleCheckpointFile("ANEH_CP_3.json", 3)
         else
             autoLoopEnabled = false
             isManualMode = false
@@ -1197,12 +1196,12 @@ local SCPToggle = AutoWalkTab:Toggle({
 })
 -- Checkpoint 1 Toggle
 local CP1Toggle = AutoWalkTab:Toggle({
-    Title = "Auto Walk (Checkpoint 1)",
-    Desc = "Walk from checkpoint 1",
+    Title = "Auto Walk (Checkpoint 4)",
+    Desc = "Walk from checkpoint 4",
     Default = false,
     Callback = function(Value)
         if Value then
-            playSingleCheckpointFile("checkpoint_1.json", 4)
+            playSingleCheckpointFile("ANEH_CP_4.json", 4)
         else
             autoLoopEnabled = false
             isManualMode = false
@@ -1213,12 +1212,12 @@ local CP1Toggle = AutoWalkTab:Toggle({
 
 -- Checkpoint 2 Toggle
 local CP2Toggle = AutoWalkTab:Toggle({
-    Title = "Auto Walk (Checkpoint 2)",
-    Desc = "Walk from checkpoint 2",
+    Title = "Auto Walk (Checkpoint 5)",
+    Desc = "Walk from checkpoint 5",
     Default = false,
     Callback = function(Value)
         if Value then
-            playSingleCheckpointFile("checkpoint_2.json", 5)
+            playSingleCheckpointFile("ANEH_CP_5.json", 5)
         else
             autoLoopEnabled = false
             isManualMode = false
@@ -1229,12 +1228,12 @@ local CP2Toggle = AutoWalkTab:Toggle({
 
 -- Checkpoint 3 Toggle
 local CP3Toggle = AutoWalkTab:Toggle({
-    Title = "Auto Walk (Checkpoint 3)",
-    Desc = "Walk from checkpoint 3",
+    Title = "Auto Walk (Checkpoint 6)",
+    Desc = "Walk from checkpoint 6",
     Default = false,
     Callback = function(Value)
         if Value then
-            playSingleCheckpointFile("checkpoint_3.json", 6)
+            playSingleCheckpointFile("ANEH_CP_6.json", 6)
         else
             autoLoopEnabled = false
             isManualMode = false
@@ -1245,12 +1244,12 @@ local CP3Toggle = AutoWalkTab:Toggle({
 
 -- Checkpoint 4 Toggle
 local CP4Toggle = AutoWalkTab:Toggle({
-    Title = "Auto Walk (Checkpoint 4 Route 1)",
-    Desc = "Walk from checkpoint 4 Route 1",
+    Title = "Auto Walk (Checkpoint 7)",
+    Desc = "Walk from checkpoint 7",
     Default = false,
     Callback = function(Value)
         if Value then
-            playSingleCheckpointFile("checkpoint_4_jalur_1.json", 7)
+            playSingleCheckpointFile("ANEH_CP_7.json", 7)
         else
             autoLoopEnabled = false
             isManualMode = false
@@ -1260,28 +1259,12 @@ local CP4Toggle = AutoWalkTab:Toggle({
 })
 
 local CP4Toggle = AutoWalkTab:Toggle({
-    Title = "Auto Walk (Checkpoint 4 Route 2)",
-    Desc = "Walk from checkpoint 4 route 2",
+    Title = "Auto Walk (Summit)",
+    Desc = "Walk from Summit",
     Default = false,
     Callback = function(Value)
         if Value then
-            playSingleCheckpointFile("checkpoint_4_jalur_2.json", 8)
-        else
-            autoLoopEnabled = false
-            isManualMode = false
-            stopPlayback()
-        end
-    end,
-})
-
--- Checkpoint 5 Toggle
-local CP5Toggle = AutoWalkTab:Toggle({
-    Title = "Auto Walk (Checkpoint 5)",
-    Desc = "Walk from checkpoint 5",
-    Default = false,
-    Callback = function(Value)
-        if Value then
-            playSingleCheckpointFile("checkpoint_5.json", 9)
+            playSingleCheckpointFile("ANEH_SUMMIT.json", 8)
         else
             autoLoopEnabled = false
             isManualMode = false
