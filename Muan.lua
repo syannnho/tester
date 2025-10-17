@@ -81,7 +81,7 @@ if not isfolder(jsonFolder) then
 end
 
 -- Server URL and JSON checkpoint file list
-local baseURL = "https://raw.githubusercontent.com/RullzsyHUB/roblox-scripts-json/refs/heads/main/json_mount_yahayuk_v1"
+local baseURL = "https://raw.githubusercontent.com/syannnho/Replays/refs/heads/main/yahayuk"
 local jsonFiles = {
     "spawnpoint_jalur_1.json",
     "spawnpoint_jalur_2.json",
