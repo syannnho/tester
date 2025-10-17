@@ -1,3 +1,6 @@
+Saya akan membantu Anda menghapus sistem autentikasi dari script ini. Berikut adalah script yang sudah dimodifikasi:
+
+```lua
 -------------------------------------------------------------
 -- LOAD LIBRARY UI
 -------------------------------------------------------------
@@ -16,7 +19,6 @@ local Window = Rayfield:CreateWindow({
 -------------------------------------------------------------
 -- TAB MENU
 -------------------------------------------------------------
-local AccountTab = Window:CreateTab("Account", "user")
 local AutoWalkTab = Window:CreateTab("Auto Walk", "bot")
 local VisualTab = Window:CreateTab("Visual", "layers")
 local RunAnimationTab = Window:CreateTab("Run Animation", "person-standing")
@@ -41,249 +43,6 @@ local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
 local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 local setclipboard = setclipboard or toclipboard
-
-
-
--------------------------------------------------------------
--- FILE SYSTEM CONFIGURATION
--------------------------------------------------------------
--- Check if authenticated
-if not getgenv().AuthComplete then
-    warn("[MAIN] Not authenticated! Please run auth script first.")
-    return
-end
-
--------------------------------------------------------------
--- ACCOUNT TAB
--------------------------------------------------------------
-local API_CONFIG = {
-    base_url = "https://rullzsyhub.my.id/",
-    get_user_endpoint = "get_user.php",
-}
-
-local FILE_CONFIG = {
-    folder = "RullzsyHUB",
-    subfolder = "auth",
-    filename = "token.dat"
-}
-
-local function getAuthFilePath()
-    return FILE_CONFIG.folder .. "/" .. FILE_CONFIG.subfolder .. "/" .. FILE_CONFIG.filename
-end
-
-local function loadTokenFromFile()
-    if not isfile then
-        return nil
-    end
-    
-    local success, result = pcall(function()
-        if not isfile(getAuthFilePath()) then
-            return nil
-        end
-        
-        local content = readfile(getAuthFilePath())
-        local data = HttpService:JSONDecode(content)
-        
-        if data.username == LocalPlayer.Name then
-            return data.token
-        end
-        return nil
-    end)
-    
-    return success and result or nil
-end
-
-local function getToken()
-    local fileToken = loadTokenFromFile()
-    if fileToken and fileToken ~= "" then
-        return fileToken
-    end
-    
-    local envToken = getgenv().UserToken
-    if envToken and envToken ~= "" then
-        return tostring(envToken)
-    end
-    
-    return nil
-end
-
-local function safeHttpRequest(url, method, data, headers)
-    method = method or "GET"
-    local requestData = { Url = url, Method = method }
-
-    if headers then requestData.Headers = headers end
-    if data and method == "POST" then requestData.Body = data end
-
-    local ok, res = pcall(function() return HttpService:RequestAsync(requestData) end)
-    if ok and res and res.Success and res.StatusCode == 200 then
-        return true, res.Body
-    end
-
-    if method == "GET" then
-        local ok2, res2 = pcall(function() return HttpService:GetAsync(url, false) end)
-        if ok2 and res2 then return true, res2 end
-        local ok3, res3 = pcall(function() return game:HttpGet(url) end)
-        if ok3 and res3 then return true, res3 end
-    end
-
-    return false, tostring(res)
-end
-
-local userData = {
-    username = "Guest",
-    role = "Member",
-    expire_timestamp = os.time()
-}
-
-local updateConnection = nil
-
-AccountTab:CreateSection("Informasi Akun")
-local InfoParagraph = AccountTab:CreateParagraph({
-    Title = "📊 Status Akun",
-    Content = "🔄 Memuat data...\n⏳ Tunggu sebentar..."
-})
-
-local function formatTimeRealtime(seconds)
-    if seconds <= 0 then return "Expired" end
-    local days = math.floor(seconds / 86400)
-    local hours = math.floor((seconds % 86400) / 3600)
-    local minutes = math.floor((seconds % 3600) / 60)
-    local secs = math.floor(seconds % 60)
-    return string.format("%d Hari | %02d Jam | %02d Menit | %02d Detik", days, hours, minutes, secs)
-end
-
-local function getExpiryStatusRealtime(expireTimestamp)
-    local remaining = expireTimestamp - os.time()
-    local emoji = "🟢"
-
-    if remaining <= 0 then
-        emoji = "🔴"
-        return emoji, "Expired"
-    elseif remaining <= 86400 then
-        emoji = "🟠"
-    elseif remaining <= 259200 then
-        emoji = "🟡"
-    end
-
-    return emoji, formatTimeRealtime(remaining)
-end
-
-local function updateAccountInfo()
-    local savedToken = getToken()
-    
-    if not savedToken or savedToken == "" then
-        InfoParagraph:Set({
-            Title = "🚫 Token Error",
-            Content = "❌ Token tidak ditemukan.\nSilakan restart dan login ulang."
-        })
-        return
-    end
-
-    InfoParagraph:Set({
-        Title = "🔄 Memuat Data",
-        Content = "⏳ Menghubungkan ke server..."
-    })
-
-    local encodedToken = HttpService:UrlEncode(tostring(savedToken))
-    local url = API_CONFIG.base_url .. API_CONFIG.get_user_endpoint .. "?token=" .. encodedToken
-    
-    local headers = {
-        ["Content-Type"] = "application/json",
-        ["User-Agent"] = "Roblox/WinInet",
-        ["ngrok-skip-browser-warning"] = "true"
-    }
-
-    local ok, res = safeHttpRequest(url, "GET", nil, headers)
-    if not ok then
-        InfoParagraph:Set({
-            Title = "🚨 Connection Error",
-            Content = "❌ Gagal terhubung ke server.\n" .. tostring(res)
-        })
-        return
-    end
-
-    local okDecode, data = pcall(function() return HttpService:JSONDecode(res) end)
-    if not okDecode or type(data) ~= "table" then
-        InfoParagraph:Set({
-            Title = "🔐 Server Error",
-            Content = "❌ Format response tidak valid."
-        })
-        return
-    end
-
-    if data.status ~= "success" then
-        InfoParagraph:Set({
-            Title = "🔐 Authentication Failed",
-            Content = "❌ " .. tostring(data.message or "Error")
-        })
-        return
-    end
-
-    userData.username = tostring(data.name or "Unknown")
-    userData.role = tostring(data.role or "Member")
-    userData.expire_timestamp = tonumber(data.expire_timestamp) or (os.time() + 86400)
-
-    if updateConnection then
-        updateConnection:Disconnect()
-    end
-
-    updateConnection = RunService.Heartbeat:Connect(function()
-        local emoji, timeStr = getExpiryStatusRealtime(userData.expire_timestamp)
-        InfoParagraph:Set({
-            Title = "👨🏻‍💼 Welcome, " .. userData.username,
-            Content = string.format(
-                "🏷️  Role       : %s\n⏰  Expire     : %s %s\n\n✅ Status: Aktif",
-                userData.role,
-                emoji, timeStr
-            )
-        })
-    end)
-    
-    Rayfield:Notify({
-        Title = "✅ Data Loaded",
-        Content = "Welcome, " .. userData.username .. "!",
-        Duration = 3
-    })
-end
-
-AccountTab:CreateSection("Quick Actions")
-
-AccountTab:CreateButton({
-    Name = "🔄 Refresh Akun",
-    Callback = function()
-        updateAccountInfo()
-    end
-})
-
-AccountTab:CreateButton({
-    Name = "🛒 Beli/Perpanjang Key",
-    Callback = function()
-        local discordLink = "https://discord.gg/KEajwZQaRd"
-        if setclipboard then
-            setclipboard(discordLink)
-            Rayfield:Notify({
-                Title = "📋 Copied!",
-                Content = "Discord link copied!",
-                Duration = 3
-            })
-        end
-    end
-})
-
-AccountTab:CreateParagraph({
-    Title = "💡 Info",
-    Content = "Untuk perpanjang key, silahkan buat ticket di Discord."
-})
-
--- Auto load account info
-task.spawn(function()
-    task.wait(1)
-    updateAccountInfo()
-end)
--------------------------------------------------------------
--- ACCOUNT TAB - END
--------------------------------------------------------------
-
 
 -------------------------------------------------------------
 -- AUTO WALK
@@ -1131,6 +890,7 @@ local function createPauseRotateUI()
     dragIndicator.Name = "DragIndicator"
     dragIndicator.BackgroundTransparency = 1
     dragIndicator.Position = UDim2.new(0.5, 0, 0, 8)
+
     dragIndicator.Size = UDim2.new(0, 40, 0, 6)
     dragIndicator.AnchorPoint = Vector2.new(0.5, 0)
     dragIndicator.Parent = bgFrame
@@ -2056,5 +1816,12 @@ CreditsTab:CreateLabel("UI: Rayfield Interface")
 CreditsTab:CreateLabel("Dev: RullzsyHUB")
 -------------------------------------------------------------
 -- CREDITS - END
-
 -------------------------------------------------------------
+
+-- Notification on script load
+Rayfield:Notify({
+    Title = "Script Loaded",
+    Content = "RullzsyHUB | Mount Yahayuk berhasil dimuat!",
+    Duration = 5,
+    Image = "check-circle"
+})
