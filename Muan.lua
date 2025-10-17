@@ -8,10 +8,10 @@ local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/Rull
 -- WINDOW PROCESS
 -------------------------------------------------------------
 local Window = Rayfield:CreateWindow({
-   Name = "RullzsyHUB | MOUNT YAHAYUK",
+   Name = "AstrionHUB | MOUNT YAHAYUK",
    Icon = "braces",
-   LoadingTitle = "Created By RullzsyHUB",
-   LoadingSubtitle = "Follow Tiktok: @rullzsy99",
+   LoadingTitle = "Created By Jinho",
+   LoadingSubtitle = "bngvs",
 })
 
 -------------------------------------------------------------
@@ -1268,6 +1268,36 @@ local Section = AutoWalkTab:CreateSection("Auto Walk (Manual)")
 -- Toggle Auto Walk (Spawnpoint)
 local SCPToggle = AutoWalkTab:CreateToggle({
     Name = "Auto Walk (Spawnpoint)",
+    CurrentValue = false,
+    Callback = function(Value)
+        if Value then
+            playSingleCheckpointFile("spawnpoint.json", 1)
+        else
+            autoLoopEnabled = false
+            isManualMode = false
+            stopPlayback()
+        end
+    end,
+})
+
+-- Toggle Auto Walk (Spawnpoint New Route)
+local SCPToggle = AutoWalkTab:CreateToggle({
+    Name = "Auto Walk (Spawnpoint New Route)",
+    CurrentValue = false,
+    Callback = function(Value)
+        if Value then
+            playSingleCheckpointFile("spawnpoint.json", 1)
+        else
+            autoLoopEnabled = false
+            isManualMode = false
+            stopPlayback()
+        end
+    end,
+})
+
+-- Toggle Auto Walk (Spawnpoint)
+local SCPToggle = AutoWalkTab:CreateToggle({
+    Name = "Auto Walk (Spawnpoint New Route)",
     CurrentValue = false,
     Callback = function(Value)
         if Value then
