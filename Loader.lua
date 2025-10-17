@@ -57,18 +57,8 @@ local UpdateSection = UpdateTab:Section({
 UpdateSection:Paragraph({
     Title = "🧾 Update 16 Oktober 2025",
     Content = [[
-🧩 Penambahan Fitur:
-- MT YAHAYUK > Mode 180 Derajat (Pause/Rotate Menu)
-- MT YAHAYUK > Always Run (otomatis sprint di PC)
-
-🐞 Fix:
-- Jalur Mount Atin & Checkpoint 5 diperbaiki.
-
-🗺️ Map Baru:
-- Fokus ke event, map baru menyusul 😎
-
-💡 Catatan:
-Klik menu "List Scripts" untuk membuka dan menjalankan script.
+Update Route:
+- MT YAHAYUK > New Rotate Menu
     ]]
 })
 
@@ -100,7 +90,7 @@ ScriptSection:Button({
             Duration = 4,
             Icon = "loader"
         })
-        loadstring(game:HttpGet(""))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/syannnho/tester/refs/heads/main/Muan.lua"))()
     end
 })
 
