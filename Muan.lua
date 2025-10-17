@@ -32,15 +32,15 @@ WindUI:AddTheme({
 -- WINDOW PROCESS
 -------------------------------------------------------------
 local Window = WindUI:CreateWindow({
-    Title = "RullzsyHUB | MOUNT YAHAYUK",
+    Title = "AstrionHUB | MOUNT YAHAYUK",
     Icon = "lucide:braces",
-    Author = "by RullzsyHUB",
+    Author = "by Jinho",
     Folder = "RullzsyHUB_MountYahayuk",
     Size = UDim2.fromOffset(580, 460),
     MinSize = Vector2.new(560, 350),
     MaxSize = Vector2.new(850, 560),
     Transparent = true,
-    Theme = "RullzsyHUB Theme",
+    Theme = "AstrionHUB Theme",
     Resizable = true,
     SideBarWidth = 200,
     BackgroundImageTransparency = 0.42,
@@ -1157,7 +1157,7 @@ local SCPToggle = AutoWalkTab:Toggle({
     Default = false,
     Callback = function(Value)
         if Value then
-            playSingleCheckpointFile("spawnpoint_jalur_1", 1)
+            playSingleCheckpointFile("spawnpoint_jalur_1.json", 1)
         else
             autoLoopEnabled = false
             isManualMode = false
@@ -1172,7 +1172,7 @@ local SCPToggle = AutoWalkTab:Toggle({
     Default = false,
     Callback = function(Value)
         if Value then
-            playSingleCheckpointFile("spawnpoint_jalur_2", 2)
+            playSingleCheckpointFile("spawnpoint_jalur_2.json", 2)
         else
             autoLoopEnabled = false
             isManualMode = false
@@ -1187,7 +1187,7 @@ local SCPToggle = AutoWalkTab:Toggle({
     Default = false,
     Callback = function(Value)
         if Value then
-            playSingleCheckpointFile("spawnpoint_jalur_3", 3)
+            playSingleCheckpointFile("spawnpoint_jalur_3.json", 3)
         else
             autoLoopEnabled = false
             isManualMode = false
