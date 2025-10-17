@@ -1123,6 +1123,70 @@ local AlwaysSprintToggle = AutoWalkTab:Toggle({
     end,
 })
 
+
+-- Add this code after the Pause/Rotate Menu Toggle and before the Always Sprint section
+
+-- Auto Loop Toggle
+local AutoLoopToggle = AutoWalkTab:Toggle({
+    Title = "🔁 Auto Loop",
+    Desc = "Enable automatic looping for all checkpoints",
+    Default = false,
+    Callback = function(Value)
+        loopingEnabled = Value
+        if loopingEnabled then
+            WindUI:Notify({
+                Title = "Auto Loop",
+                Content = "Auto Loop Mode AKTIF ✅",
+                Duration = 3,
+                Icon = "lucide:repeat"
+            })
+        else
+            WindUI:Notify({
+                Title = "Auto Loop",
+                Content = "Auto Loop Mode NONAKTIF ❌",
+                Duration = 3,
+                Icon = "lucide:repeat-off"
+            })
+        end
+    end,
+})
+
+-- Start Auto Loop Button
+AutoWalkTab:Button({
+    Title = "▶️ Start Auto Loop",
+    Desc = "Begin auto walk from first checkpoint with looping",
+    Callback = function()
+        if not loopingEnabled then
+            WindUI:Notify({
+                Title = "Auto Loop",
+                Content = "Aktifkan Auto Loop terlebih dahulu!",
+                Duration = 3,
+                Icon = "lucide:alert-triangle"
+            })
+            return
+        end
+        autoLoopEnabled = true
+        startAutoWalkSequence()
+    end,
+})
+
+-- Stop Auto Loop Button
+AutoWalkTab:Button({
+    Title = "⏹️ Stop Auto Loop",
+    Desc = "Stop the current auto loop",
+    Callback = function()
+        autoLoopEnabled = false
+        isManualMode = false
+        stopPlayback()
+        WindUI:Notify({
+            Title = "Auto Loop",
+            Content = "Auto Loop diberhentikan",
+            Duration = 2,
+            Icon = "lucide:stop-circle"
+        })
+    end,
+})
+
 -- Speed Slider
 local SpeedSlider = AutoWalkTab:Slider({
     Title = "⚡ Set Speed",
